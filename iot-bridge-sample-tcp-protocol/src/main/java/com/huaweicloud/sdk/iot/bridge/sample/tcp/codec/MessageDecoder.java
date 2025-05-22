@@ -40,16 +40,14 @@ import com.huaweicloud.sdk.iot.bridge.sample.tcp.dto.MsgHeader;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 上行数据的消息解码，将原始码流转换为具体对象
  */
 @ChannelHandler.Sharable
+@Slf4j
 public class MessageDecoder extends ChannelInboundHandlerAdapter {
-    private static final Logger log = LogManager.getLogger(MessageDecoder.class);
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {

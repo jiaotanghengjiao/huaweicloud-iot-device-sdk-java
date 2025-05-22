@@ -39,9 +39,6 @@ import com.huaweicloud.sdk.iot.device.gateway.requests.GtwDelSubDeviceRsp;
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
 import com.huaweicloud.sdk.iot.device.utils.ExceptionUtil;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -67,12 +64,13 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 一个传输字符串数据的tcp server，客户端建链后，首条消息是鉴权消息，携带设备标识nodeId。server将收到的消息通过gateway转发给平台
  */
+@Slf4j
 public class StringTcpServer {
-    private static final Logger log = LogManager.getLogger(StringTcpServer.class);
 
     private static SimpleGateway simpleGateway;
 

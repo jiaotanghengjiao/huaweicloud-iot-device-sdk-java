@@ -36,9 +36,8 @@ import com.huaweicloud.sdk.iot.device.gateway.requests.SubDevicesInfo;
 import com.huaweicloud.sdk.iot.device.utils.ExceptionUtil;
 import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,8 +48,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 /**
  * 将子设备信息保存到json文件。用户可以自己实现SubDevicesPersistence接口来进行替换
  */
+@Slf4j
 public class SubDevicesFilePersistence implements SubDevicesPersistence {
-    private static final Logger log = LogManager.getLogger(SubDevicesFilePersistence.class);
 
     private final ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 

@@ -7,9 +7,7 @@ import com.huaweicloud.sdk.iot.device.client.listener.ShadowListener;
 import com.huaweicloud.sdk.iot.device.client.requests.ShadowData;
 import com.huaweicloud.sdk.iot.device.client.requests.ShadowRequest;
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,8 +18,8 @@ import java.util.List;
 /**
  * 演示如何直接使用DeviceClient获取设备影子
  */
+@Slf4j
 public class ShadowSample {
-    private static final Logger log = LogManager.getLogger(ShadowSample.class);
 
     public static final String IOT_ROOT_CA_RES_PATH = "ca.jks";
 

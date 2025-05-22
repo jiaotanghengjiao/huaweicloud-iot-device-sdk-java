@@ -32,16 +32,14 @@ package com.huaweicloud.sdk.iot.device.client;
 
 import com.huaweicloud.sdk.iot.device.transport.RawMessage;
 import com.huaweicloud.sdk.iot.device.utils.ExceptionUtil;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class IotRequest {
-    private static final Logger log = LogManager.getLogger(IotRequest.class);
 
     private String requestId;
 

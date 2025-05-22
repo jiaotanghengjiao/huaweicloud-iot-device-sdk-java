@@ -31,12 +31,10 @@
 package com.huaweicloud.sdk.iot.device.client.listener;
 
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
+import lombok.extern.slf4j.Slf4j;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+@Slf4j
 public class DefaultActionListenerImpl implements ActionListener {
-    private static final Logger log = LogManager.getLogger(DefaultActionListenerImpl.class);
 
     private final String actionType;
 

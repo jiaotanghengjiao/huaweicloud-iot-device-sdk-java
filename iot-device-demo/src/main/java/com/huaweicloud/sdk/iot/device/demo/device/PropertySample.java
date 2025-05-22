@@ -35,9 +35,7 @@ import com.huaweicloud.sdk.iot.device.client.IotResult;
 import com.huaweicloud.sdk.iot.device.client.listener.PropertyListener;
 import com.huaweicloud.sdk.iot.device.client.requests.ServiceProperty;
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,13 +53,13 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 /**
  * 演示如何直接使用DeviceClient进行设备属性的上报和读写
  */
+@Slf4j
 public class PropertySample {
 
     private static final String IOT_ROOT_CA_RES_PATH = "ca.jks";
 
     private static final String IOT_ROOT_CA_TMP_PATH = "huaweicloud-iotda-tmp-" + IOT_ROOT_CA_RES_PATH;
 
-    private static final Logger log = LogManager.getLogger(PropertySample.class);
 
     public static void main(String[] args) throws InterruptedException, IOException {
 

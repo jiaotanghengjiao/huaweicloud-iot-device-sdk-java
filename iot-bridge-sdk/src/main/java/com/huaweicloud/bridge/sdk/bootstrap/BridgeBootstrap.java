@@ -33,15 +33,13 @@ package com.huaweicloud.bridge.sdk.bootstrap;
 import com.huaweicloud.bridge.sdk.BridgeDevice;
 import com.huaweicloud.sdk.iot.device.client.ClientConf;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 /**
  * 网桥启动初始化
  */
 public class BridgeBootstrap {
-    private static final Logger log = LogManager.getLogger(BridgeBootstrap.class);
-
     // 网桥模式
     private static final int CONNECT_OF_BRIDGE_MODE = 3;
 

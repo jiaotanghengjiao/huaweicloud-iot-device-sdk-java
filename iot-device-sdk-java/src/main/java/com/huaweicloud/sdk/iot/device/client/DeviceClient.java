@@ -68,9 +68,7 @@ import com.huaweicloud.sdk.iot.device.transport.mqtt.MqttConnection;
 import com.huaweicloud.sdk.iot.device.utils.ExceptionUtil;
 import com.huaweicloud.sdk.iot.device.utils.IotUtil;
 import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -94,14 +92,14 @@ import java.util.concurrent.TimeUnit;
  * 事件：双向、异步，需要在模型定义
  * 用户不能直接创建DeviceClient实例，只能先创建IoTDevice实例，然后通过IoTDevice的getClient接口获取DeviceClient实例
  */
+@Slf4j
 public class DeviceClient implements RawMessageListener {
-    private static final Logger log = LogManager.getLogger(DeviceClient.class);
 
     private static final int CLIENT_THREAD_COUNT = 1;
 
     private static final String DEFAULT_GZIP_ENCODING = "UTF-8";
 
-    private static final String SDK_VERSION = "JAVA_v1.2.1";
+    private static final String SDK_VERSION = "JAVA_v1.2.2";
 
     private static final String MESSAGE_DOWN_TOPIC = "/messages/down";
 
@@ -753,7 +751,12 @@ public class DeviceClient implements RawMessageListener {
         connection.publishMessage(rawMessage, listener);
     }
 
+    /**
+     * 配置自定义连接选项，需要在init方法前调用
+     * @param customOptions 自定义连接选项
+     */
     public void setCustomOptions(CustomOptions customOptions) {
         this.customOptions = customOptions;
+        this.connection.setCustomOptions(customOptions);
     }
 }

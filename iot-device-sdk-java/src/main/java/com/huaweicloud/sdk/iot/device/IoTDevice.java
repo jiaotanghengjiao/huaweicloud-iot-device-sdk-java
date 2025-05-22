@@ -31,7 +31,6 @@
 package com.huaweicloud.sdk.iot.device;
 
 import com.huaweicloud.sdk.iot.device.client.ClientConf;
-import com.huaweicloud.sdk.iot.device.client.CustomOptions;
 import com.huaweicloud.sdk.iot.device.client.DeviceClient;
 import com.huaweicloud.sdk.iot.device.service.AbstractDevice;
 import com.huaweicloud.sdk.iot.device.service.AbstractService;
@@ -163,13 +162,5 @@ public class IoTDevice extends AbstractDevice {
      */
     public DeviceClient getClient() {
         return super.getClient();
-    }
-
-    /**
-     * 配置自定义连接选项，需要在init方法前调用
-     * @param customOptions 自定义连接选项
-     */
-    public void setCustomOptions(CustomOptions customOptions) {
-        this.customOptions = customOptions;
     }
 }

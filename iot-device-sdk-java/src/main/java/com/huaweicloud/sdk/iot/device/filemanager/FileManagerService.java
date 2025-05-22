@@ -38,9 +38,8 @@ import com.huaweicloud.sdk.iot.device.service.AbstractService;
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
 import com.huaweicloud.sdk.iot.device.utils.IotUtil;
 import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
+import lombok.extern.slf4j.Slf4j;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,8 +47,8 @@ import java.util.Map;
 /**
  * 文件上传/下载服务类
  */
+@Slf4j
 public class FileManagerService extends AbstractService {
-    private static final Logger log = LogManager.getLogger(FileManagerService.class);
 
     private static final String FILE_NAME = "file_name";
 

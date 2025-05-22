@@ -32,13 +32,12 @@ package com.huaweicloud.sdk.iot.device.client.listener;
 
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 
+@Slf4j
 public class DefaultSubscribeListenerImpl implements IMqttActionListener {
-    private static final Logger log = LogManager.getLogger(DefaultActionListenerImpl.class);
 
     private final String topic;
 

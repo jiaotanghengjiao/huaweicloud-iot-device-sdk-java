@@ -5,8 +5,7 @@ import com.huaweicloud.sdk.iot.device.constants.Constants;
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
 import com.huaweicloud.sdk.iot.device.transport.ConnectListener;
 import com.huaweicloud.sdk.iot.device.transport.RawMessage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,8 +17,8 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 /**
  * 演示如何直接使用自定义Topic实现消息上下行
  */
+@Slf4j
 public class CustomizeTopicSample implements ConnectListener {
-    private static final Logger log = LogManager.getLogger(MessageSample.class);
 
     private static final String IOT_ROOT_CA_RES_PATH = "ca.jks";
 

@@ -52,9 +52,7 @@ import com.huaweicloud.sdk.iot.device.transport.ConnectListener;
 import com.huaweicloud.sdk.iot.device.transport.RawMessage;
 import com.huaweicloud.sdk.iot.device.utils.IotUtil;
 import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.security.KeyStore;
@@ -66,8 +64,8 @@ import java.util.Map;
 /**
  * 抽象网关，实现了子设备管理，子设备消息转发功能
  */
+@Slf4j
 public abstract class AbstractGateway extends IoTDevice {
-    private static final Logger log = LogManager.getLogger(AbstractGateway.class);
 
     private SubDevDiscoveryListener subDevDiscoveryListener;
 

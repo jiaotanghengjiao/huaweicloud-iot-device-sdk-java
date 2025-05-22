@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.huaweicloud</groupId>
         <artifactId>iot-device-sdk-java-pom</artifactId>
-        <version>1.2.1</version>
+        <version>1.2.2</version>
     </parent>
 
     <artifactId>iot-device-demo</artifactId>
@@ -21,15 +21,18 @@
         <dependency>
             <groupId>com.huaweicloud</groupId>
             <artifactId>iot-device-sdk-java</artifactId>
-            <version>1.2.1</version>
+            <version>1.2.2</version>
+            <exclusions>
+                <!-- 排除 slf4j-simple -->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -44,12 +47,12 @@
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcpkix-jdk15to18</artifactId>
-            <version>1.70</version>
+            <version>1.78</version>
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15to18</artifactId>
-            <version>1.70</version>
+            <version>1.78</version>
         </dependency>
     </dependencies>
 

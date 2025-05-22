@@ -39,9 +39,8 @@ import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -59,9 +58,8 @@ import java.util.Objects;
 /**
  * 此工具根据产品模型文件自动生成设备代码
  */
+@Slf4j
 public class DeviceCodeGenerator {
-
-    private static final Logger log = LogManager.getLogger(DeviceCodeGenerator.class);
 
     public static final String DEMO_TEMPLATE_NAME = "generated-demo";
 

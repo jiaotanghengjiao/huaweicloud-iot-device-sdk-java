@@ -41,9 +41,7 @@ import com.huaweicloud.sdk.iot.bridge.sample.tcp.session.DeviceSessionManger;
 import com.huaweicloud.sdk.iot.bridge.sample.tcp.session.RequestIdCache;
 import com.huaweicloud.sdk.iot.device.client.requests.DeviceMessage;
 import com.huaweicloud.sdk.iot.bridge.sample.tcp.session.DeviceSession;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 import java.util.Optional;
@@ -51,9 +49,9 @@ import java.util.Optional;
 /**
  * 平台下行数据处理类
  */
+@Slf4j
 public class DownLinkHandler implements BridgeDeviceMessageListener, BridgeCommandListener,
     BridgeDeviceDisConnListener {
-    private static final Logger log = LogManager.getLogger(DownLinkHandler.class);
 
     // 网桥sample中处理的是属性和命令，消息透传用户可自行实现
     @Override

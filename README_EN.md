@@ -43,6 +43,7 @@ Create and initialize a device. Currently, communication secured with Chinese cr
 Before enabling the Chinese cryptography algorithms, see the [BGMProvider Installation Guide](https://gitee.com/openeuler/bgmprovider/wikis/%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3/BGMProvider%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97).
 ```java
         IoTDevice device = new IoTDevice("ssl://xxx.st1.iotda-device.cn-north-4.myhuaweicloud.com:8883", "your device id", "your device secret", file);
+        // 用户请替换为自己的接入地址。
         //International encrypted communication is used by default. To use Chinese encrypted communication, set Gmssl to true.
         //device.getClient().getClientConf().setGmssl(true);
         //The timestamp is not verified by default. To verify the timestamp, set the corresponding parameter to select the hash algorithm.
@@ -314,6 +315,7 @@ After the service is defined,
 create a device, register the smoke sensor service, and initialize the device.
 ```java
     // Create a device.
+    // 用户请替换为自己的接入地址。
    IoTDevice device = new IoTDevice("ssl://xxx.st1.iotda-device.cn-north-4.myhuaweicloud.com:8883", "5e06bfee334dd4f33759f5b3_demo", "mysecret", file);
 
    // Create a device service.
@@ -365,6 +367,7 @@ For device access in Chinese cryptographic algorithm scenario, import two certif
 
 Use the certificate to create a device.
 ```java
+    // 用户请替换为自己的接入地址。
     IoTDevice iotDevice = new IoTDevice("ssl://xxx.st1.iotda-device.cn-north-4.myhuaweicloud.com:8883", "5e06bfee334dd4f33759f5b3_demo3", keyStore, "keypassword", file);
 ```
 
@@ -377,19 +380,87 @@ The [iot-device-demo/src/main/resources/rootca](iot-device-demo/src/main/resourc
 
 When you connect multiple devices to the IoT platform, you are advised to use the combined root CA certificate file (huaweicloud-iot-root-ca-list.bks\huaweicloud-iot-root-ca-list.jks\huaweicloud-iot-root-ca-list.pem, that is, ca.jks in each sample project) to ensure the consistency of programming interfaces.
 
+### Modifying the Logging Framework
+Starting from version 1.2.2, the iot-device-sdk-java uses the SLF4J facade with dynamic binding by default. When no specific configuration is provided, it employs the slf4j-simple logging framework to print logs. If you need to modify the logging framework, you can exclude slf4j-simple and introduce your preferred logging framework.
+
+Excluding slf4j-simple:
+```java
+    <exclusions>
+        <!-- Exclude slf4j-simple -->
+        <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+        </exclusion>
+    </exclusions>
+```
+To use the Log4j framework:
+Add the following Maven dependency in your .pom file and create a log4j2.xml configuration file in the resources folder.
+
+```java
+    <!-- Add to .pom file -->
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-slf4j2-impl</artifactId>
+    </dependency>
+```
+```java
+    <!-- Content for log4j2.xml (customize the output format as needed) -->
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Configuration status="WARN">
+        <Appenders>
+            <Console name="Console" target="SYSTEM_OUT">
+                <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %5p %c{1}:%L - %m%n"/>
+            </Console>
+        </Appenders>
+        <Loggers>
+            <Root level="info">
+                <AppenderRef ref="Console"/>
+            </Root>
+        </Loggers>
+    </Configuration>
+```
+To use the Logback framework:
+Add the following Maven dependency in your .pom file and create a logback.xml configuration file in the resources folder.
+```java
+    <!-- Add to .pom file -->
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.3.14</version>
+    </dependency>
+```
+```java
+    <!-- Content for logback.xml (customize the output format as needed) -->
+    <?xml version="1.0" encoding="UTF-8"?>
+    <configuration>
+        <!-- Console output -->
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %c{1}:%L - %m%n</pattern>
+            </encoder>
+        </appender>
+    
+    <!-- Set log level -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+    </configuration>
+```
+
 ## Version Updates
 
-| Version Number| Change Type| Description                                                        |
-| ------ | -------- | ------------------------------------------------------------ |
-| 1.2.1  | New feature| The OTA upgrade in gateway mode were added.                         |
-| 1.2.0  | New features| The generic protocol, Chinese cryptographic algorithms, and OBS upgrade packages were added.                         |
-|        | Function enhancement| 1. Optimized the method of transferring the platform root CA certificate to the BootstrapClient construction method . The original construction method was marked as discarded.<br>2. Updated **ca.jks** in Samples to all authoritative root CA certificates that contain device certificates of instances in each region.<br>3. Fixed some spelling mistakes.<br>4. Upgraded paho.<br>5. Fixed the issue where the system did not retry after a backoff reconnection.|
-| 1.1.2  | Function enhancement| Modified the provisioning function and compatible with scenarios where different certificates are used in multiple regions.                |
-| 1.0.1  | New feature  | The implicit subscription interface and data compression reporting interface were added.                      |
-| 1.0.0  | Function enhancement| 1. Modified the logic for compatibility with old V3 interfaces.<br>2. The subdevice status was refreshed by gateway.<br>3. Modified the QoS of the default subscription topic, modified the conflict between a new link and an old link, and modified the reconnection time.|
-| 0.8.0  | Function enhancement| Added the access domain name (iot-mqtts.cn-north-4.myhuaweicloud.com) and root certificate.<br>If the device uses the old domain name (iot-acc.cn-north-4.myhuaweicloud.com) for access, use the SDK of v0.6.0 or an earlier version.|
-| 0.6.0  | Function enhancement| Adjusted the OTA service use and improved the MD.                                 |
-| 0.5.0  | New feature| Connected to the Huawei Cloud IoT platform to facilitate service scenarios such as access, device management, and command delivery.|
+| Version Number | Change Type| Description                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+|----------------| -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.2.2          | Optimized function | The log framework is modified and the SLF4J is used to select the log framework.                                                                                                                                                                                                                                                                                                                                                                      |
+| 1.2.1          | New feature| The OTA upgrade in gateway mode were added.                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| 1.2.0          | New features| The generic protocol, Chinese cryptographic algorithms, and OBS upgrade packages were added.                                                                                                                                                                                                                                                                                                                                                                            |
+|                | Function enhancement| 1. Optimized the method of transferring the platform root CA certificate to the BootstrapClient construction method . The original construction method was marked as discarded.<br>2. Updated **ca.jks** in Samples to all authoritative root CA certificates that contain device certificates of instances in each region.<br>3. Fixed some spelling mistakes.<br>4. Upgraded paho.<br>5. Fixed the issue where the system did not retry after a backoff reconnection. |
+| 1.1.2          | Function enhancement| Modified the provisioning function and compatible with scenarios where different certificates are used in multiple regions.                                                                                                                                                                                                                                                                                                                                             |
+| 1.0.1          | New feature  | The implicit subscription interface and data compression reporting interface were added.                                                                                                                                                                                                                                                                                                                                                                                |
+| 1.0.0          | Function enhancement| 1. Modified the logic for compatibility with old V3 interfaces.<br>2. The subdevice status was refreshed by gateway.<br>3. Modified the QoS of the default subscription topic, modified the conflict between a new link and an old link, and modified the reconnection time.                                                                                                                                                                                            |
+| 0.8.0          | Function enhancement| Added the access domain name (iot-mqtts.cn-north-4.myhuaweicloud.com) and root certificate.<br>If the device uses the old domain name (iot-acc.cn-north-4.myhuaweicloud.com) for access, use the SDK of v0.6.0 or an earlier version.                                                                                                                                                                                                                                   |
+| 0.6.0          | Function enhancement| Adjusted the OTA service use and improved the MD.                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| 0.5.0          | New feature| Connected to the Huawei Cloud IoT platform to facilitate service scenarios such as access, device management, and command delivery.                                                                                                                                                                                                                                                                                                                                     |
 
 1. Added compression APIs.
 

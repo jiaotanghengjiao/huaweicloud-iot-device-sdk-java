@@ -33,10 +33,8 @@ package com.huaweicloud.sdk.iot.device.codegenerator.productparser;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -52,9 +50,8 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+@Slf4j
 public class DeviceProfileParser {
-    private static final Logger log = LogManager.getLogger(DeviceProfileParser.class);
-
     private static final String DEVICETYPE_CAPABILITY = "devicetype-capability";
 
     private static final String SERVICETYPE_CAPABILITY = "servicetype-capability";

@@ -35,12 +35,10 @@ import com.huaweicloud.sdk.iot.device.client.requests.DeviceEvents;
 import com.huaweicloud.sdk.iot.device.transport.RawMessage;
 import com.huaweicloud.sdk.iot.device.utils.IotUtil;
 import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
+import lombok.extern.slf4j.Slf4j;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+@Slf4j
 public class EventDownHandler implements MessageReceivedHandler {
-    private static final Logger log = LogManager.getLogger(EventDownHandler.class);
 
     private static final String BRIDGE_TOPIC_KEYWORD = "$oc/bridges/";
 

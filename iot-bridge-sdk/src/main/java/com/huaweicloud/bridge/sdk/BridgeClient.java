@@ -31,7 +31,6 @@
 package com.huaweicloud.bridge.sdk;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.huaweicloud.bridge.sdk.bootstrap.BridgeBootstrap;
 import com.huaweicloud.bridge.sdk.constants.BridgeSDKConstants;
 import com.huaweicloud.bridge.sdk.handler.BridgeCommandHandler;
 import com.huaweicloud.bridge.sdk.handler.BridgeMessageHandler;
@@ -67,9 +66,7 @@ import com.huaweicloud.sdk.iot.device.transport.RawMessage;
 import com.huaweicloud.sdk.iot.device.utils.ExceptionUtil;
 import com.huaweicloud.sdk.iot.device.utils.IotUtil;
 import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.Instant;
 import java.time.ZoneId;
@@ -84,9 +81,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+@Slf4j
 public class BridgeClient extends DeviceClient {
-
-    private static final Logger log = LogManager.getLogger(BridgeBootstrap.class);
 
     private static final String SIGN_TYPE = "sign_type";
 

@@ -33,14 +33,12 @@ package com.huaweicloud.sdk.iot.bridge.sample.tcp.session;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.huaweicloud.sdk.iot.device.utils.ExceptionUtil;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class RequestIdCache {
-    private static final Logger log = LogManager.getLogger(RequestIdCache.class);
 
     private static final String SEPARATOR = ":";
 

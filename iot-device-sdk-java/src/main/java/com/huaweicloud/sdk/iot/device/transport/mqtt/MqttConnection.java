@@ -43,8 +43,7 @@ import com.huaweicloud.sdk.iot.device.transport.RawMessageListener;
 import com.huaweicloud.sdk.iot.device.utils.ExceptionUtil;
 import com.huaweicloud.sdk.iot.device.utils.IotUtil;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -68,9 +67,8 @@ import javax.net.ssl.SSLContext;
 /**
  * mqtt连接
  */
+@Slf4j
 public class MqttConnection implements Connection {
-    private static final Logger log = LogManager.getLogger(MqttConnection.class);
-
     private static final int DEFAULT_QOS = 1;
 
     private static final int DEFAULT_CONNECT_TIMEOUT = 60;
@@ -382,5 +380,4 @@ public class MqttConnection implements Connection {
         }
 
     }
-
 }

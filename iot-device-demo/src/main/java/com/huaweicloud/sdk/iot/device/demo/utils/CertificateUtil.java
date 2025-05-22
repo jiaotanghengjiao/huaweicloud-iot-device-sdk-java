@@ -32,8 +32,7 @@ package com.huaweicloud.sdk.iot.device.demo.utils;
 
 import java.security.KeyStore;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.openssl.PEMDecryptorProvider;
@@ -50,8 +49,8 @@ import java.security.KeyPair;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
 
+@Slf4j
 public class CertificateUtil {
-    private static final Logger log = LogManager.getLogger(CertificateUtil.class);
 
     /**
      * 读取PEM格式的证书

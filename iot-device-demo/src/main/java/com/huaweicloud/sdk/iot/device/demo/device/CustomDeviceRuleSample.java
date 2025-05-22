@@ -7,9 +7,7 @@ import com.huaweicloud.sdk.iot.device.client.requests.ServiceProperty;
 import com.huaweicloud.sdk.iot.device.devicerule.ActionHandler;
 import com.huaweicloud.sdk.iot.device.devicerule.model.DeviceRuleAction;
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,8 +23,8 @@ import java.util.concurrent.TimeUnit;
  * 演示如何直接使用DeviceClient获取端侧规则并执行
  * 通过命令回调显示规则执行结果
  */
+@Slf4j
 public class CustomDeviceRuleSample {
-    private static final Logger log = LogManager.getLogger(CustomDeviceRuleSample.class);
 
     public static final String IOT_ROOT_CA_RES_PATH = "ca.jks";
 
@@ -34,9 +32,9 @@ public class CustomDeviceRuleSample {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         // 用户请替换为自己的接入地址。
-        String serverUri = "ssl://xxx.st1.iotda-device.cn-north-4.myhuaweicloud.com:8883";
-        String deviceId = "702b1038-a174-4a1d-969f-f67f8df43c4a";
-        String password = "password";
+        String serverUri = "tcp://100.93.51.66:1883";
+        String deviceId = "661f99d6da14e268414f0af6_l1234";
+        String password = "12345678";
 
         // 加载iot平台的ca证书，进行服务端校验
         File tmpCAFile = new File(IOT_ROOT_CA_TMP_PATH);
