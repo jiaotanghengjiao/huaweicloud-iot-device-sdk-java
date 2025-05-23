@@ -33,7 +33,6 @@ package com.huaweicloud.sdk.iot.device.transport.mqtt;
 import com.huaweicloud.sdk.iot.device.client.ClientConf;
 import com.huaweicloud.sdk.iot.device.client.CustomOptions;
 import com.huaweicloud.sdk.iot.device.client.listener.DefaultPublishListenerImpl;
-import com.huaweicloud.sdk.iot.device.client.listener.DefaultSubscribeListenerImpl;
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
 import com.huaweicloud.sdk.iot.device.transport.ConnectActionListener;
 import com.huaweicloud.sdk.iot.device.transport.ConnectListener;
@@ -48,6 +47,7 @@ import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
+import org.eclipse.paho.client.mqttv3.MqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
@@ -368,10 +368,17 @@ public class MqttConnection implements Connection {
      * @param topic 主题
      */
     public void subscribeTopic(String topic, ActionListener listener, int qos) {
-        DefaultSubscribeListenerImpl defaultSubscribeListener = new DefaultSubscribeListenerImpl(topic, listener);
-
         try {
-            mqttAsyncClient.subscribe(topic, qos, null, defaultSubscribeListener);
+            MqttToken token = (MqttToken)this.mqttAsyncClient.subscribe(topic, qos, null, null);
+            token.waitForCompletion();
+            int[] grantedQos = token.getGrantedQos();
+            for (int granted : grantedQos) {
+                if (qos == granted) {
+                    listener.onSuccess(topic);
+                } else {
+                    listener.onFailure(topic, new RuntimeException("subscribe failure qos is " + granted));
+                }
+            }
         } catch (MqttException e) {
             log.error(ExceptionUtil.getBriefStackTrace(e));
             if (listener != null) {
