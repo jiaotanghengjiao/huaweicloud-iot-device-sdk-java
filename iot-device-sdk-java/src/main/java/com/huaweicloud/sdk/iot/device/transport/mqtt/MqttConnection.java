@@ -371,7 +371,16 @@ public class MqttConnection implements Connection {
         DefaultSubscribeListenerImpl defaultSubscribeListener = new DefaultSubscribeListenerImpl(topic, listener);
 
         try {
-            mqttAsyncClient.subscribe(topic, qos, null, defaultSubscribeListener);
+            MqttToken token = (MqttToken)this.mqttAsyncClient.subscribe(topic, qos, null, null);
+            token.waitForCompletion();
+            int[] grantedQos = token.getGrantedQos();
+            for (int granted : grantedQos) {
+                if (qos == granted) {
+                    listener.onSuccess(topic);
+                } else {
+                    listener.onFailure(topic, new RuntimeException("subscribe failure qos is " + granted));
+                }
+            }
         } catch (MqttException e) {
             log.error(ExceptionUtil.getBriefStackTrace(e));
             if (listener != null) {
