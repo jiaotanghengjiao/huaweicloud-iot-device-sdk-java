@@ -39,15 +39,13 @@ import com.huaweicloud.sdk.iot.device.ota.OTAQueryInfo;
 import com.huaweicloud.sdk.iot.device.ota.OTAService;
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
 
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -71,9 +69,8 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
  * 使用方法：用户在平台上选择对应的obs桶和包后创建升级任务，修改main函数里设备参数后启动本例，即可看到设备收到升级通知，并下载升级包进行升级，
  * 并上报升级结果。在平台上可以看到升级结果
  */
+@Slf4j
 public class OTAV2Sample implements OTAListener {
-
-    private static final Logger log = LogManager.getLogger(OTASample.class);
 
     private final IoTDevice device;
 

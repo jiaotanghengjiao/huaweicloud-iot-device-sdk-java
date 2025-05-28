@@ -37,20 +37,18 @@ import com.huaweicloud.sdk.iot.bridge.sample.tcp.dto.DeviceLocationFrequencySet;
 import com.huaweicloud.sdk.iot.bridge.sample.tcp.dto.MsgHeader;
 import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelOutboundHandlerAdapter;
 import io.netty.channel.ChannelPromise;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 下行数据的消息编码，将具体对象转换为原始码流数据
  */
 @ChannelHandler.Sharable
+@Slf4j
 public class MessageEncoder extends ChannelOutboundHandlerAdapter {
-    private static final Logger log = LogManager.getLogger(MessageEncoder.class);
 
     @Override
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) {

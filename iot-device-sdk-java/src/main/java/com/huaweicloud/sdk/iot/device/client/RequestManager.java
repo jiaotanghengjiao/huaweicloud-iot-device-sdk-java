@@ -32,9 +32,7 @@ package com.huaweicloud.sdk.iot.device.client;
 
 import com.huaweicloud.sdk.iot.device.transport.RawMessage;
 import com.huaweicloud.sdk.iot.device.utils.IotUtil;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -42,8 +40,8 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * 请求管理器
  */
+@Slf4j
 public class RequestManager {
-    private static final Logger log = LogManager.getLogger(RequestManager.class);
 
     private final ConcurrentMap<String, IotRequest> pendingRequests = new ConcurrentHashMap<>();
 

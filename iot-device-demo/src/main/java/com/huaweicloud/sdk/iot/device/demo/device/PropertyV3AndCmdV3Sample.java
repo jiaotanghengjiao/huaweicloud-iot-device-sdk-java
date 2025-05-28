@@ -37,9 +37,7 @@ import com.huaweicloud.sdk.iot.device.client.requests.CommandV3;
 import com.huaweicloud.sdk.iot.device.client.requests.DevicePropertiesV3;
 import com.huaweicloud.sdk.iot.device.client.requests.ServiceData;
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,13 +54,13 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 /**
  * 演示如何使用旧接口（调用V3接口）数据上报/命令下发，一般用不到
  */
+@Slf4j
 public class PropertyV3AndCmdV3Sample {
 
     private static final String IOT_ROOT_CA_RES_PATH = "ca.jks";
 
     private static final String IOT_ROOT_CA_TMP_PATH = "huaweicloud-iotda-tmp-" + IOT_ROOT_CA_RES_PATH;
 
-    private static final Logger log = LogManager.getLogger(PropertyV3AndCmdV3Sample.class);
 
     public static void main(String[] args) throws IOException {
 

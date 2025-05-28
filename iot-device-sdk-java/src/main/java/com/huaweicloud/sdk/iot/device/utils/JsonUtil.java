@@ -38,17 +38,16 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import lombok.extern.slf4j.Slf4j;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
 /**
  * json工具类
  */
+@Slf4j
 public class JsonUtil {
-    private static final Logger log = LogManager.getLogger(JsonUtil.class);
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     static {

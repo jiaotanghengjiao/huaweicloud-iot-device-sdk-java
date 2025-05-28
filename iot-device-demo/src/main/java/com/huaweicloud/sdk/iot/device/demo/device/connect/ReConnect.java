@@ -1,23 +1,21 @@
 package com.huaweicloud.sdk.iot.device.demo.device.connect;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+
 import com.huaweicloud.sdk.iot.device.IoTDevice;
 import com.huaweicloud.sdk.iot.device.client.CustomOptions;
+import com.huaweicloud.sdk.iot.device.client.DeviceClient;
 import com.huaweicloud.sdk.iot.device.client.handler.CustomBackoffHandler;
-import com.huaweicloud.sdk.iot.device.demo.device.MessageSample;
 import com.huaweicloud.sdk.iot.device.transport.Connection;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
-
-public class ReConnect {
-
-    private static final Logger log = LogManager.getLogger(MessageSample.class);
+@Slf4j
+public class ReConnect extends DeviceClient {
 
     private static final String IOT_ROOT_CA_RES_PATH = "ca.jks";
 
@@ -60,7 +58,7 @@ public class ReConnect {
                 return 0;
             }
         });
-        device.setCustomOptions(customOptionsnew);
+        device.getClient().setCustomOptions(customOptionsnew);
 
         // 建链
         if (device.init() != 0) {

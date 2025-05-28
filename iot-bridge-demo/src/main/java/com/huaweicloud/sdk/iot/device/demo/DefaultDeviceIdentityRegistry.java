@@ -31,9 +31,7 @@
 package com.huaweicloud.sdk.iot.device.demo;
 
 import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -43,9 +41,8 @@ import java.util.Map;
 /**
  * 默认的设备标识管理器，从文件中读取设备标识信息。用于可以自定义DeviceIdentityRegistry类进行替换
  */
+@Slf4j
 public class DefaultDeviceIdentityRegistry implements DeviceIdentityRegistry {
-
-    private static final Logger log = LogManager.getLogger(DefaultDeviceIdentityRegistry.class);
 
     private final Map<String, Map<String, String>> deviceIdentityMap;
 

@@ -39,9 +39,7 @@ import com.huaweicloud.sdk.iot.device.transport.RawMessage;
 import com.huaweicloud.sdk.iot.device.transport.RawMessageListener;
 import com.huaweicloud.sdk.iot.device.transport.mqtt.MqttConnection;
 import com.huaweicloud.sdk.iot.device.utils.IotUtil;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.security.KeyStore;
 import java.util.Base64;
@@ -52,8 +50,8 @@ import java.util.concurrent.Future;
 /**
  * 引导客户端，用于设备引导来获取服务端地址
  */
+@Slf4j
 public class BootstrapClient implements RawMessageListener, Cloneable {
-    private static final Logger log = LogManager.getLogger(BootstrapClient.class);
 
     /**
      * 设备发放的设备侧CA证书，注意与IoTDA的设备侧区分开

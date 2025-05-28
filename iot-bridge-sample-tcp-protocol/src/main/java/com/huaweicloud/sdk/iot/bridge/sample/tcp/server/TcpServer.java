@@ -53,9 +53,7 @@ import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.timeout.ReadTimeoutHandler;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 模拟定时进行位置上报的电子学生卡服务端，设备的协议数据如下：
@@ -75,9 +73,9 @@ import org.apache.logging.log4j.Logger;
  * 5、设备返回设置设备上报周期的响应：
  * [867082058798193,2,FREQUENCY_LOCATION_SET,2,0]
  */
+@Slf4j
 public class TcpServer {
 
-    private static final Logger log = LogManager.getLogger(TcpServer.class);
 
     private static final int MAX_FRAME_LENGTH = 1024;
 

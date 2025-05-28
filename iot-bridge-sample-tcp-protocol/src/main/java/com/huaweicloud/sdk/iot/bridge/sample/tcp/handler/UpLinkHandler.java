@@ -50,9 +50,7 @@ import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collections;
 import java.util.Map;
@@ -61,9 +59,8 @@ import java.util.UUID;
 /**
  * 设备上行数据处理类
  */
+@Slf4j
 public class UpLinkHandler extends ChannelInboundHandlerAdapter {
-
-    private static final Logger log = LogManager.getLogger(UpLinkHandler.class);
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {

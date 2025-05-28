@@ -4,8 +4,7 @@ import com.huaweicloud.sdk.iot.device.devicerule.model.DeviceRuleCondition;
 import com.huaweicloud.sdk.iot.device.devicerule.model.DeviceRuleInfo;
 import com.huaweicloud.sdk.iot.device.utils.IotUtil;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;
 import org.quartz.JobDataMap;
@@ -23,8 +22,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+@Slf4j
 public class TimerRuleInstance {
-    private static final Logger log = LogManager.getLogger(TimerRuleInstance.class);
 
     private Scheduler scheduler;
 

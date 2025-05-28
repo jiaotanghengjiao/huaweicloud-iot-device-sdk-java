@@ -2,10 +2,8 @@ package com.huaweicloud.sdk.iot.device.demo.device.connect;
 
 import com.huaweicloud.sdk.iot.device.IoTDevice;
 import com.huaweicloud.sdk.iot.device.client.requests.DeviceMessage;
-import com.huaweicloud.sdk.iot.device.demo.device.MessageSample;
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,9 +12,9 @@ import java.nio.file.Files;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
+@Slf4j
 public class SecretAuthConnect {
 
-    private static final Logger log = LogManager.getLogger(MessageSample.class);
 
     private static final String IOT_ROOT_CA_RES_PATH = "ca.jks";
 

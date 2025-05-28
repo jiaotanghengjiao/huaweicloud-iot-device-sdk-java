@@ -32,9 +32,7 @@ package com.huaweicloud.sdk.iot.device.demo.device;
 
 import com.huaweicloud.sdk.iot.device.IoTDevice;
 import com.huaweicloud.sdk.iot.device.timesync.TimeSyncService;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,9 +46,9 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 /**
  * 时间同步样例
  */
+@Slf4j
 public class NtpSample {
 
-    private static final Logger log = LogManager.getLogger(NtpSample.class);
 
     public static final String IOT_ROOT_CA_RES_PATH = "ca.jks";
 
@@ -87,7 +85,7 @@ public class NtpSample {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             log.info(sdf.format(new Date(now)));
 
-            log.info(now);
+            log.info(String.valueOf(now));
 
         });
 

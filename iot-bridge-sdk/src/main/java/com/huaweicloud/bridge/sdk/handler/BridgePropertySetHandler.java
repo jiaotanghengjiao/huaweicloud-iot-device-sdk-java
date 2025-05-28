@@ -38,14 +38,12 @@ import com.huaweicloud.sdk.iot.device.client.requests.ServiceProperty;
 import com.huaweicloud.sdk.iot.device.transport.RawMessage;
 import com.huaweicloud.sdk.iot.device.utils.IotUtil;
 import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
+@Slf4j
 public class BridgePropertySetHandler implements MessageReceivedHandler {
-    private static final Logger log = LogManager.getLogger(BridgePropertySetHandler.class);
 
     private final BridgeClient bridgeClient;
 

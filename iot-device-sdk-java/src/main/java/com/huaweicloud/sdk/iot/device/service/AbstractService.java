@@ -36,9 +36,7 @@ import com.huaweicloud.sdk.iot.device.client.requests.Command;
 import com.huaweicloud.sdk.iot.device.client.requests.CommandRsp;
 import com.huaweicloud.sdk.iot.device.client.requests.DeviceEvent;
 import com.huaweicloud.sdk.iot.device.utils.ExceptionUtil;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -54,8 +52,8 @@ import java.util.TimerTask;
  * 抽象服务类，提供了属性自动读写和命令调用能力，用户可以继承此类，根据物模型定义自己的服务
  */
 @JsonFilter("AbstractService")
+@Slf4j
 public abstract class AbstractService implements IService {
-    private static final Logger log = LogManager.getLogger(AbstractService.class);
 
     private AbstractDevice iotDevice;
 

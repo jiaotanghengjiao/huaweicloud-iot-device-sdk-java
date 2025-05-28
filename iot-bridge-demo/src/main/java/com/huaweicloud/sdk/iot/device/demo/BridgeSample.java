@@ -46,9 +46,7 @@ import com.huaweicloud.sdk.iot.device.filemanager.FileManagerService;
 import com.huaweicloud.sdk.iot.device.filemanager.request.OpFileStatusRequest;
 import com.huaweicloud.sdk.iot.device.filemanager.request.UrlRequest;
 import com.huaweicloud.sdk.iot.device.filemanager.response.UrlResponse;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.security.SecureRandom;
 import java.util.Collections;
@@ -60,9 +58,8 @@ import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
+@Slf4j
 public class BridgeSample {
-
-    private static final Logger log = LogManager.getLogger(BridgeSample.class);
 
     /**
      * iot平台连接地址

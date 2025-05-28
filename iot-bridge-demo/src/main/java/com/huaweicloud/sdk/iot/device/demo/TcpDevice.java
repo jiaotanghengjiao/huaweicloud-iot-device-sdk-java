@@ -45,9 +45,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import lombok.extern.slf4j.Slf4j;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -55,9 +53,9 @@ import java.io.InputStreamReader;
  * 一个tcp客户端，模拟一个tcp设备，仅用于测试。注意设备连到server后，必选首先发送鉴权消息，
  * 携带设备标识码
  */
+@Slf4j
 public class TcpDevice {
 
-    private static final Logger log = LogManager.getLogger(TcpDevice.class);
 
     private final String host;
 

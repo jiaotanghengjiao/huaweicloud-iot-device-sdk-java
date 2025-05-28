@@ -45,9 +45,7 @@ import com.huaweicloud.sdk.iot.device.utils.IotUtil;
 import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
 
 import io.netty.channel.Channel;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.util.HashMap;
@@ -59,9 +57,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * 和平台进行通讯。本例子TCP server传输简单的字符串，并且首条消息会发送设备标识来鉴权。用户可以自行扩展StringTcpServer类
  * 来实现更复杂的TCP server。
  */
+@Slf4j
 public class SimpleGateway extends AbstractGateway {
-    private static final Logger log = LogManager.getLogger(SimpleGateway.class);
-
     private final Map<String, Session> nodeIdToSesseionMap; // 保存设备标识码和session的映射
 
     private final Map<String, Session> channelIdToSessionMap; // 保存channelId和session的映射

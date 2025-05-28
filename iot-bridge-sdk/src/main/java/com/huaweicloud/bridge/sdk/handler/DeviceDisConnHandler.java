@@ -34,14 +34,10 @@ import com.huaweicloud.bridge.sdk.BridgeClient;
 import com.huaweicloud.sdk.iot.device.client.handler.MessageReceivedHandler;
 import com.huaweicloud.sdk.iot.device.transport.RawMessage;
 import com.huaweicloud.sdk.iot.device.utils.IotUtil;
+import lombok.extern.slf4j.Slf4j;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+@Slf4j
 public class DeviceDisConnHandler implements MessageReceivedHandler {
-
-    private static final Logger log = LogManager.getLogger(
-        DeviceDisConnHandler.class);
 
     private final BridgeClient bridgeClient;
 

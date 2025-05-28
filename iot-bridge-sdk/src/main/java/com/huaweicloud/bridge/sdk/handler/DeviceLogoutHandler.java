@@ -36,18 +36,14 @@ import com.huaweicloud.sdk.iot.device.client.handler.MessageReceivedHandler;
 import com.huaweicloud.sdk.iot.device.transport.RawMessage;
 import com.huaweicloud.sdk.iot.device.utils.IotUtil;
 import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
+@Slf4j
 public class DeviceLogoutHandler implements MessageReceivedHandler {
-    private static final Logger log = LogManager.getLogger(
-        DeviceLogoutHandler.class);
-
     private final BridgeClient bridgeClient;
 
     public DeviceLogoutHandler(BridgeClient bridgeClient) {

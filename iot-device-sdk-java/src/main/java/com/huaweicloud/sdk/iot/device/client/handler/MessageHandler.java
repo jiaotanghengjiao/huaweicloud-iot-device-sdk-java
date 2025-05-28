@@ -34,12 +34,10 @@ import com.huaweicloud.sdk.iot.device.client.DeviceClient;
 import com.huaweicloud.sdk.iot.device.client.requests.DeviceMessage;
 import com.huaweicloud.sdk.iot.device.client.requests.RawDeviceMessage;
 import com.huaweicloud.sdk.iot.device.transport.RawMessage;
+import lombok.extern.slf4j.Slf4j;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+@Slf4j
 public class MessageHandler implements MessageReceivedHandler {
-    private static final Logger log = LogManager.getLogger(MessageHandler.class);
 
     private final DeviceClient deviceClient;
 

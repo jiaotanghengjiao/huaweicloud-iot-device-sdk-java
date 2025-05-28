@@ -41,9 +41,7 @@ import com.huaweicloud.sdk.iot.device.filemanager.request.UrlRequest;
 import com.huaweicloud.sdk.iot.device.filemanager.response.UrlResponse;
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
 import com.huaweicloud.sdk.iot.device.utils.ExceptionUtil;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedInputStream;
@@ -73,8 +71,8 @@ import okhttp3.ResponseBody;
 /**
  * 文件上传下载样例
  */
+@Slf4j
 public class FileManagerSample {
-    private static final Logger log = LogManager.getLogger(FileManagerSample.class);
 
     public static final String IOT_ROOT_CA_RES_PATH = "ca.jks";
 

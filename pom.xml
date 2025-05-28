@@ -5,7 +5,7 @@
 
     <groupId>com.huaweicloud</groupId>
     <artifactId>iot-device-sdk-java-pom</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
     <name>huaweicloud iot device sdk project for java</name>
     <description>huaweicloud iot device sdk project for java</description>
     <packaging>pom</packaging>

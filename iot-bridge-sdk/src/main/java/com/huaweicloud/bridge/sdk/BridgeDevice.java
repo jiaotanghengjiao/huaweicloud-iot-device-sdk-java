@@ -33,15 +33,13 @@ package com.huaweicloud.bridge.sdk;
 import com.huaweicloud.sdk.iot.device.IoTDevice;
 import com.huaweicloud.sdk.iot.device.client.ClientConf;
 import com.huaweicloud.sdk.iot.device.constants.Constants;
+import lombok.extern.slf4j.Slf4j;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Objects;
 
+@Slf4j
 public class BridgeDevice extends IoTDevice {
-    private static final Logger log = LogManager.getLogger(BridgeDevice.class);
-
     private static BridgeDevice instance;
 
     private final BridgeClient bridgeClient;

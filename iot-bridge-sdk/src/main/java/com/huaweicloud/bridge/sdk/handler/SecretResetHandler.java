@@ -36,14 +36,10 @@ import com.huaweicloud.sdk.iot.device.client.handler.MessageReceivedHandler;
 import com.huaweicloud.sdk.iot.device.transport.RawMessage;
 import com.huaweicloud.sdk.iot.device.utils.IotUtil;
 import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
+import lombok.extern.slf4j.Slf4j;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+@Slf4j
 public class SecretResetHandler implements MessageReceivedHandler {
-    private static final Logger log = LogManager.getLogger(
-        SecretResetHandler.class);
-
     private static final String NEW_SECRET = "new_secret";
 
     private final BridgeClient bridgeClient;

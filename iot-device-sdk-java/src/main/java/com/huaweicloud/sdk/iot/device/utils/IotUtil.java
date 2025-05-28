@@ -35,10 +35,9 @@ import com.huaweicloud.sdk.iot.device.client.CustomOptions;
 import com.huaweicloud.sdk.iot.device.constants.Constants;
 import com.huaweicloud.sdk.iot.device.transport.Connection;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -74,8 +73,8 @@ import javax.net.ssl.X509TrustManager;
 /**
  * IOT工具类
  */
+@Slf4j
 public class IotUtil {
-    private static final Logger log = LogManager.getLogger(IotUtil.class);
 
     private static final String TLS_VER = "TLSv1.2";
 

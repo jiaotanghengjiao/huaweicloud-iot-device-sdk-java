@@ -35,9 +35,8 @@ import com.huaweicloud.sdk.iot.device.client.requests.DeviceEvent;
 import com.huaweicloud.sdk.iot.device.service.AbstractService;
 import com.huaweicloud.sdk.iot.device.utils.IotUtil;
 import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
+import lombok.extern.slf4j.Slf4j;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,6 +51,7 @@ import java.util.concurrent.Future;
  * otaService.setOtaListener(new OTAListener() {
  * 具体参见OTASample
  */
+@Slf4j
 public class OTAService extends AbstractService {
 
     // 升级上报的错误码，用户也可以扩展自己的错误码
@@ -78,8 +78,6 @@ public class OTAService extends AbstractService {
     public static final int OTA_CODE_INSTALL_FAIL = 10; // 安装升级包失败
 
     public static final int OTA_CODE_INNER_ERROR = 255; // 内部异常
-
-    private static final Logger log = LogManager.getLogger(OTAService.class);
 
     private OTAListener otaListener;
 

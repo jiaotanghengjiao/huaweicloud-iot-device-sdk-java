@@ -42,9 +42,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -52,9 +50,8 @@ import java.io.InputStreamReader;
 /**
  * 一个tcp客户端，仅用于测试
  */
+@Slf4j
 public class TcpDevice {
-    private static final Logger log = LogManager.getLogger(TcpDevice.class);
-
     private final String host;
 
     private final int port;

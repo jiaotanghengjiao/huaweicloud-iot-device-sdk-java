@@ -6,17 +6,18 @@ huaweicloud-iot-device-sdk-java提供设备接入华为云IoT物联网平台的J
 
 # 0.版本更新说明
 
-| 版本号 | 变更类型 | 说明                                                         |
-| ------ | -------- | ------------------------------------------------------------ |
-| 1.2.1  | 新增功能 | OTA升级支持网关模式，端侧规则                                |
-| 1.2.0  | 新增功能 | 新增泛协议、国密算法、OBS升级包功能                          |
-|        | 功能增强 | 1、BootstrapClient构造方法传入平台根CA证书方式优化，原有构造方法标为已废弃；<br/>2、更新Samples中的ca.jks为包含平台各区域实例设备侧证书的所有权威根CA证书的证书文件；<br/>3、修复部分拼写错误;<br>4、paho升级;<br/>5、修复退避重连长时间后不再重试问题 |
-| 1.1.2  | 功能增强 | 修改发放功能问题、兼容多region不同证书场景等                 |
-| 1.0.1  | 新功能   | 增加隐式订阅接口、数据压缩上报接口等等                       |
-| 1.0.0  | 功能增强 | 1、修改兼容V3旧接口逻辑<br/>2、网关刷新子设备状态<br/>3、修改默认订阅topic的qos、修改重连新链路挤老链路、修改重连时间 |
-| 0.8.0  | 功能增强 | 更换新的接入域名（iot-mqtts.cn-north-4.myhuaweicloud.com）和根证书。<br/>如果设备使用老域名（iot-acc.cn-north-4.myhuaweicloud.com）接入，请使用 v0.6.0及以下版本的SDK |
-| 0.6.0  | 功能增强 | 调整OTA服务使用方式；完善md                                  |
-| 0.5.0  | 新增功能 | 提供对接华为云物联网平台能力，方便用户实现接入、设备管理、命令下发等业务场景 |
+| 版本号   | 变更类型 | 说明                                                                                                                                                     |
+|-------|------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.2.2 | 优化功能 | 修改日志框架，使用SLF4J实现日志框架选择                                                                                                                                 |
+| 1.2.1 | 新增功能 | OTA升级支持网关模式，端侧规则                                                                                                                                       |
+| 1.2.0 | 新增功能 | 新增泛协议、国密算法、OBS升级包功能                                                                                                                                    |
+|       | 功能增强 | 1、BootstrapClient构造方法传入平台根CA证书方式优化，原有构造方法标为已废弃；<br/>2、更新Samples中的ca.jks为包含平台各区域实例设备侧证书的所有权威根CA证书的证书文件；<br/>3、修复部分拼写错误;<br>4、paho升级;<br/>5、修复退避重连长时间后不再重试问题 |
+| 1.1.2 | 功能增强 | 修改发放功能问题、兼容多region不同证书场景等                                                                                                                              |
+| 1.0.1 | 新功能  | 增加隐式订阅接口、数据压缩上报接口等等                                                                                                                                    |
+| 1.0.0 | 功能增强 | 1、修改兼容V3旧接口逻辑<br/>2、网关刷新子设备状态<br/>3、修改默认订阅topic的qos、修改重连新链路挤老链路、修改重连时间                                                                                 |
+| 0.8.0 | 功能增强 | 更换新的接入域名（iot-mqtts.cn-north-4.myhuaweicloud.com）和根证书。<br/>如果设备使用老域名（iot-acc.cn-north-4.myhuaweicloud.com）接入，请使用 v0.6.0及以下版本的SDK                        |
+| 0.6.0 | 功能增强 | 调整OTA服务使用方式；完善md                                                                                                                                       |
+| 0.5.0 | 新增功能 | 提供对接华为云物联网平台能力，方便用户实现接入、设备管理、命令下发等业务场景                                                                                                                 |
 
 # 1.前言
 huaweicloud-iot-device-sdk-java提供设备接入华为云IoT物联网平台的Java版本的SDK，提供设备和平台之间通讯能力，以及设备服务、网关服务、OTA等高级服务，并且针对各种场景提供了丰富的demo代码。IoT设备开发者使用SDK可以大大简化开发复杂度，快速的接入平台。
@@ -1121,6 +1122,74 @@ private void reportProperties(Channel channel, BaseMessage message) {
 new TcpDevice("localhost", 8900).run();
 ```
 启动工程模拟设备同网桥建立TCP连接，并发送登录请求。
+
+
+<h2  id  =  "3.15">3.15 日志框架修改</h2>
+从1.2.2版本开始，在iot-device-sdk-java默认使用SLF4J门面 + 动态绑定，当客户使用且无具体配置时，采用slf4j-simple的日志框架打印日志。
+若是需要对日志框架进行修改，可以通过排除slf4j-simple，引入您需要的日志框架。
+
+排除slf4j-simple：
+```java
+        <exclusions>
+            <!-- 排除 slf4j-simple -->
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+            </exclusion>
+        </exclusions>
+```
+若要使用log4j日志框架，可在.pom文件中添加如下Mvn引用，并在resources文件夹中新增格式文件log4j2.xml。
+```java
+       // 在.pom文件中添加
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+        </dependency>
+```
+
+```java
+    // 在log4j2.xml中添加（可按照自身需求修改输出格式）
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss} %5p %c{1}\:%L - %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+    </Configuration>
+```
+
+若要使用logback日志框架，可在.pom文件中添加如下Mvn引用，并在resources文件夹中新增格式文件logback.xml。
+```java
+       <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.3.14</version>
+        </dependency>
+```
+
+```java
+    // 在logback.xml中添加（可按照自身需求修改输出格式）
+    <?xml version="1.0" encoding="UTF-8"?>
+    <configuration>
+        <!-- 控制台输出 -->
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%d{yyy-MM-dd HH:mm:ss} %-5level %c{1}:%L - %m%n</pattern>
+            </encoder>
+    </appender>
+    
+    <!-- 设置日志级别 -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+    </configuration>
+```
 
 ## 4. License
 

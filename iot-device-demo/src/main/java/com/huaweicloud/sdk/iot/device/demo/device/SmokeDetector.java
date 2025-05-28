@@ -35,9 +35,7 @@ import com.huaweicloud.sdk.iot.device.client.requests.CommandRsp;
 import com.huaweicloud.sdk.iot.device.service.AbstractService;
 import com.huaweicloud.sdk.iot.device.service.DeviceCommand;
 import com.huaweicloud.sdk.iot.device.service.Property;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -99,6 +97,7 @@ public class SmokeDetector {
      * 烟感服务，支持属性：报警标志、烟雾浓度、温度、湿度
      * 支持的命令：响铃报警
      */
+    @Slf4j
     public static class SmokeDetectorService extends AbstractService {
 
         // 按照设备模型定义属性，注意属性的name和类型需要和模型一致，writeable表示属性知否可写，name指定属性名
@@ -113,8 +112,6 @@ public class SmokeDetector {
 
         @Property(writeable = false)
         float temperature;
-
-        private final Logger log = LogManager.getLogger(this.getClass());
 
         // 定义命令，注意接口入参和返回值类型是固定的不能修改，否则会出现运行时错误
         @DeviceCommand(name = "ringAlarm")

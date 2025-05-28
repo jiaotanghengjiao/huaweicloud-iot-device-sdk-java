@@ -4,15 +4,14 @@ import com.huaweicloud.sdk.iot.device.devicerule.model.DeviceRuleAction;
 import com.huaweicloud.sdk.iot.device.devicerule.model.TimeRange;
 import com.huaweicloud.sdk.iot.device.utils.ExceptionUtil;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 
 import java.util.List;
 
+@Slf4j
 public class DeviceRuleJob implements Job {
-    private static final Logger log = LogManager.getLogger(DeviceRuleJob.class);
 
     @Override
     public void execute(JobExecutionContext context) {

@@ -34,17 +34,14 @@ import com.huaweicloud.sdk.iot.device.IoTDevice;
 import com.huaweicloud.sdk.iot.device.client.IotResult;
 import com.huaweicloud.sdk.iot.device.client.listener.PropertyListener;
 import com.huaweicloud.sdk.iot.device.client.requests.ServiceProperty;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
 import io.netty.channel.Channel;
 
+@Slf4j
 public class DefaultBridgePropertyListener implements PropertyListener {
-
-    private static final Logger log = LogManager.getLogger(DefaultBridgePropertyListener.class);
 
     private final Channel channel;
 

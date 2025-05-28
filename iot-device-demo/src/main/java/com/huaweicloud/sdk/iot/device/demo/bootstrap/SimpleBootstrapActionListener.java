@@ -37,12 +37,10 @@ import com.huaweicloud.sdk.iot.device.bootstrap.BootstrapClient;
 import com.huaweicloud.sdk.iot.device.client.requests.DeviceMessage;
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
 import com.huaweicloud.sdk.iot.device.utils.JsonUtil;
+import lombok.extern.slf4j.Slf4j;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+@Slf4j
 public class SimpleBootstrapActionListener implements ActionListener {
-    private static final Logger log = LogManager.getLogger(SimpleBootstrapActionListener.class);
 
     private final BootstrapClient bootstrapClient;
 

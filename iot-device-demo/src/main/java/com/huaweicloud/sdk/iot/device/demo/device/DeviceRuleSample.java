@@ -7,8 +7,7 @@ import com.huaweicloud.sdk.iot.device.client.requests.CommandRsp;
 import com.huaweicloud.sdk.iot.device.client.requests.ServiceProperty;
 import com.huaweicloud.sdk.iot.device.transport.ActionListener;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,9 +22,8 @@ import java.util.concurrent.TimeUnit;
  * 演示如何直接使用DeviceClient获取端侧规则并执行
  * 通过命令回调显示规则执行结果
  */
+@Slf4j
 public class DeviceRuleSample {
-
-    private static final Logger log = LogManager.getLogger(DeviceRuleSample.class);
 
     public static final String IOT_ROOT_CA_RES_PATH = "ca.jks";
 

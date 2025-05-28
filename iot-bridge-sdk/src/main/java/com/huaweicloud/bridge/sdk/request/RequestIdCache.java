@@ -32,9 +32,7 @@ package com.huaweicloud.bridge.sdk.request;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
@@ -42,9 +40,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * RequestId的缓存实现样例，将登录的requestId同future关联。
  */
-
+@Slf4j
 public class RequestIdCache {
-    private static final Logger log = LogManager.getLogger(RequestIdCache.class);
 
     private final Cache<String, CompletableFuture<Integer>> futureCache;
 

@@ -33,9 +33,7 @@ package com.huaweicloud.sdk.iot.device.demo.device;
 import com.huaweicloud.sdk.iot.device.IoTDevice;
 import com.huaweicloud.sdk.iot.device.client.listener.CommandListener;
 import com.huaweicloud.sdk.iot.device.client.requests.CommandRsp;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,10 +46,8 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 /**
  * 演示如何直接使用DeviceClient处理平台下发的命令
  */
+@Slf4j
 public class CommandSample {
-
-    private static final Logger log = LogManager.getLogger(CommandSample.class);
-
     private static final String IOT_ROOT_CA_RES_PATH = "ca.jks";
 
     private static final String IOT_ROOT_CA_TMP_PATH = "huaweicloud-iotda-tmp-" + IOT_ROOT_CA_RES_PATH;
