@@ -1140,15 +1140,16 @@ new TcpDevice("localhost", 8900).run();
 ```
 若要使用log4j日志框架，可在.pom文件中添加如下Mvn引用，并在resources文件夹中新增格式文件log4j2.xml。
 ```java
-       // 在.pom文件中添加
+       <!--  在.pom文件中添加 -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>2.20.0</version>
         </dependency>
 ```
 
 ```java
-    // 在log4j2.xml中添加（可按照自身需求修改输出格式）
+    <!--  在log4j2.xml中添加（可按照自身需求修改输出格式）-->
     <?xml version="1.0" encoding="UTF-8"?>
     <Configuration status="WARN">
     <Appenders>
@@ -1174,7 +1175,7 @@ new TcpDevice("localhost", 8900).run();
 ```
 
 ```java
-    // 在logback.xml中添加（可按照自身需求修改输出格式）
+    <!--  在logback.xml中添加（可按照自身需求修改输出格式）-->
     <?xml version="1.0" encoding="UTF-8"?>
     <configuration>
         <!-- 控制台输出 -->
