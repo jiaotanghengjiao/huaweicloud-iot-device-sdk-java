@@ -88,7 +88,7 @@ public class FileManagerSample {
         // 用户请替换为自己的接入地址。
         String serverUri = "ssl://xxx.st1.iotda-device.cn-north-4.myhuaweicloud.com:8883";
         String deviceId = "702b1038-a174-4a1d-969f-f67f8df43c4a";
-        String password = "password";
+        String deviceSecret = "deviceSecret";
 
         // Load the CA certificate of the IoT platform and perform server verification
         File tmpCAFile = new File(IOT_ROOT_CA_TMP_PATH);
@@ -97,7 +97,7 @@ public class FileManagerSample {
         }
 
         // Create device
-        IoTDevice device = new IoTDevice(serverUri, deviceId, password, tmpCAFile);
+        IoTDevice device = new IoTDevice(serverUri, deviceId, deviceSecret, tmpCAFile);
         if (device.init() != 0) {
             return;
         }

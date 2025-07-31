@@ -1109,12 +1109,12 @@ private void reportProperties(Channel channel, BaseMessage message) {
     }
 ```
 ### 测试验证
-### 1. 获取网桥接入信息
+#### 1. 获取网桥接入信息
 代码调试时，需要获取对应的网桥接入信息，并配置到对应的环境变量中。网桥接入信息，环境变量配置参考：
     
 ![](doc/figure_cn/bridge_get_auth_info.png)
 
-### 2. 功能验证
+#### 2. 功能验证
 均可参考[https://support.huaweicloud.com/usermanual-iothub/iot_02_3.html](https://support.huaweicloud.com/usermanual-iothub/iot_02_3.html) 实现
 
 启动TCP：打开开文件`iot-bridge-demo\src\main\java\com\huaweicloud\sdk\iot\device\demo\TcpDevice.java`，将42行修改为：
@@ -1140,7 +1140,7 @@ new TcpDevice("localhost", 8900).run();
 ```
 若要使用log4j日志框架，可在.pom文件中添加如下Mvn引用，并在resources文件夹中新增格式文件log4j2.xml。
 ```java
-       <!--  在.pom文件中添加 -->
+       <!-- 在.pom文件中添加 -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j2-impl</artifactId>
@@ -1149,7 +1149,7 @@ new TcpDevice("localhost", 8900).run();
 ```
 
 ```java
-    <!--  在log4j2.xml中添加（可按照自身需求修改输出格式）-->
+    <!-- 在log4j2.xml中添加（可按照自身需求修改输出格式）-->
     <?xml version="1.0" encoding="UTF-8"?>
     <Configuration status="WARN">
     <Appenders>
@@ -1175,7 +1175,7 @@ new TcpDevice("localhost", 8900).run();
 ```
 
 ```java
-    <!--  在logback.xml中添加（可按照自身需求修改输出格式）-->
+    <!-- 在logback.xml中添加（可按照自身需求修改输出格式）-->
     <?xml version="1.0" encoding="UTF-8"?>
     <configuration>
         <!-- 控制台输出 -->
@@ -1192,11 +1192,21 @@ new TcpDevice("localhost", 8900).run();
     </configuration>
 ```
 
-## 4. License
+## 4. 常见问题
+
+- 建链返回：`2025-07-02 11:44:31  INFO MqttConnection:291 - connect failed, the reason is 错误的用户名或密码 (4)`。
+
+  排查方法：
+
+  1. 查看deviceId是否错误：在控制台界面查看设备，在界面中复制`设备ID` ，即为SDK中deviceId的值。
+
+  2. 确认密码是否正确：在设备创建时用户填入的`密钥` 即为SDK中deviceSecret的值。若是忘记密码，可在设备详情页面重置密钥。
+
+## 5. License
 
 SDK的开源License类型为 [BSD 3-Clause License](https://opensource.org/licenses/BSD-3-Clause)。详情参见LICENSE.txt
 
-## 5. 如何贡献代码
+## 6. 如何贡献代码
 
 1、创建github账号
 2、fork huaweicloud-iot-device-sdk-java源代码

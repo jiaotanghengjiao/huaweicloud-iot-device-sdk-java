@@ -401,7 +401,7 @@ Add the following Maven dependency in your .pom file and create a log4j2.xml con
     <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-slf4j2-impl</artifactId>
-            <version>2.20.0</version>
+        <version>2.20.0</version>
     </dependency>
 ```
 ```java

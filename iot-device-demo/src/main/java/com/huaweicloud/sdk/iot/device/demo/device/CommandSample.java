@@ -56,13 +56,13 @@ public class CommandSample {
         // 用户请替换为自己的接入地址。
         String serverUri = "ssl://xxx.st1.iotda-device.cn-north-4.myhuaweicloud.com:8883";
         String deviceId = "5e06bfee334dd4f33759f5b3_demo";
-        String password = "password";
+        String deviceSecret = "deviceSecret";
 
         // 从命令行获取设备参数
         if (args.length >= 3) {
             serverUri = args[0];
             deviceId = args[1];
-            password = args[2];
+            deviceSecret = args[2];
         }
 
         // 加载iot平台的ca证书，进行服务端校验
@@ -72,7 +72,7 @@ public class CommandSample {
         }
 
         // 创建设备
-        IoTDevice device = new IoTDevice(serverUri, deviceId, password, tmpCAFile);
+        IoTDevice device = new IoTDevice(serverUri, deviceId, deviceSecret, tmpCAFile);
 
         // 设置监听器接收下行
         device.getClient().setCommandListener(new CommandListener() {
