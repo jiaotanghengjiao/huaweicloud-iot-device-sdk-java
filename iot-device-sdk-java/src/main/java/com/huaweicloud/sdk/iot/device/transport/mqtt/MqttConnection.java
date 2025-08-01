@@ -47,12 +47,12 @@ import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
-import org.eclipse.paho.client.mqttv3.MqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.MqttToken;
 import org.eclipse.paho.client.mqttv3.internal.DisconnectedMessageBuffer;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
@@ -369,14 +369,14 @@ public class MqttConnection implements Connection {
      */
     public void subscribeTopic(String topic, ActionListener listener, int qos) {
         try {
-            MqttToken token = (MqttToken)this.mqttAsyncClient.subscribe(topic, qos, null, null);
+            MqttToken token = (MqttToken)this.mqttAsyncClient.subscribe(topic, qos, (Object)null, null);
             token.waitForCompletion();
             int[] grantedQos = token.getGrantedQos();
-            for (int granted : grantedQos) {
-                if (qos == granted) {
+            for (int grantedQo : grantedQos) {
+                if (qos == grantedQo) {
                     listener.onSuccess(topic);
                 } else {
-                    listener.onFailure(topic, new RuntimeException("subscribe failure qos is " + granted));
+                    listener.onFailure(topic, new RuntimeException("subscribe failed granted qos is " + grantedQo));
                 }
             }
         } catch (MqttException e) {

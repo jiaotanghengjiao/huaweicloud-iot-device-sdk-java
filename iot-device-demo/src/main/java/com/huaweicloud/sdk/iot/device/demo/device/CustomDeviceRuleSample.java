@@ -32,9 +32,9 @@ public class CustomDeviceRuleSample {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         // 用户请替换为自己的接入地址。
-        String serverUri = "tcp://100.93.51.66:1883";
-        String deviceId = "661f99d6da14e268414f0af6_l1234";
-        String password = "12345678";
+        String serverUri = "ssl://xxx.st1.iotda-device.cn-north-4.myhuaweicloud.com:8883";
+        String deviceId = "702b1038-a174-4a1d-969f-f67f8df43c4a";
+        String deviceSecret = "deviceSecret";
 
         // 加载iot平台的ca证书，进行服务端校验
         File tmpCAFile = new File(IOT_ROOT_CA_TMP_PATH);
@@ -43,7 +43,7 @@ public class CustomDeviceRuleSample {
         }
 
         // 创建设备
-        IoTDevice device = new IoTDevice(serverUri, deviceId, password, tmpCAFile);
+        IoTDevice device = new IoTDevice(serverUri, deviceId, deviceSecret, tmpCAFile);
         device.getClient().setActionHandler(new ActionHandler() {
             @Override
             public void handleRuleAction(List<DeviceRuleAction> actionList) {

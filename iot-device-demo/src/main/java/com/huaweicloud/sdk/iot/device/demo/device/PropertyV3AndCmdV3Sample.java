@@ -65,7 +65,7 @@ public class PropertyV3AndCmdV3Sample {
     public static void main(String[] args) throws IOException {
 
         String deviceId = "5e06bfee334dd4f33759f5b3_demo";
-        String password = "password";
+        String deviceSecret = "deviceSecret";
 
         // 加载iot平台的ca证书，进行服务端校验
         File tmpCAFile = new File(IOT_ROOT_CA_TMP_PATH);
@@ -75,7 +75,7 @@ public class PropertyV3AndCmdV3Sample {
 
         // 创建设备并初始化, 用户请替换为自己的接入地址。
         IoTDevice device = new IoTDevice("ssl://xxx.st1.iotda-device.cn-north-4.myhuaweicloud.com:8883",
-            deviceId, password, tmpCAFile);
+            deviceId, deviceSecret, tmpCAFile);
         if (device.init() != 0) {
             return;
         }
